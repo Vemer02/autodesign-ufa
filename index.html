@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AUTODESIGN Уфа</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Автоателье AUTODESIGN в Уфе: кузовной ремонт любой сложности, стапель, химчистка, мойка, оптика, автосервис. Работаем 24/7.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Russo+One&family=Manrope:wght@400;500;700;800&display=swap">
+<style>
+/* Layout: тёмный «цех» — sticky-шапка, крупный заголовок с жёлтой линией кузова, сетка услуг, лента отзывов, заявка и контакты */
+:root{
+  --bg:#06070B; --surface:#101219; --surface-2:#161924; --line:#232633;
+  --fg:#F2F2F0; --muted:#A2A5AF; --accent:#E8E41C; --accent-ink:#06070B;
+  --display:'Russo One','Arial Black',Impact,sans-serif;
+  --body:Manrope,'Segoe UI',Roboto,Arial,sans-serif;
+  --r:12px; --maxw:1160px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;line-height:1.05;margin:0;text-wrap:balance}
+h2{font-size:clamp(26px,4vw,40px)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:52px;padding:0 22px;border-radius:10px;font-family:var(--body);font-weight:800;font-size:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s ease,background .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn-accent{background:var(--accent);color:var(--accent-ink)}
+.btn-accent:hover{background:#F6F247}
+.btn-ghost{background:var(--surface-2);color:var(--fg);border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--accent)}
+section{padding-block:56px}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+
+/* шапка */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(6,7,11,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
+.bar img{height:30px;width:auto;display:block}
+.nav{display:flex;gap:22px}
+.nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+.nav a:hover{color:var(--fg)}
+.bar-call{display:flex;align-items:center;gap:10px}
+.bar-phone{color:var(--fg);text-decoration:none;font-weight:800;font-size:15px;white-space:nowrap}
+.bar .btn{min-height:44px;padding:0 16px;font-size:14px}
+@media (max-width:860px){.nav{display:none}}
+@media (max-width:520px){.bar-phone{display:none}}
+
+/* hero */
+.hero{padding-block:48px 40px;background:radial-gradient(90% 70% at 85% 0%,#25250A 0%,var(--bg) 62%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:40px;align-items:center}
+@media (max-width:860px){.hero-grid{grid-template-columns:minmax(0,1fr);gap:28px}}
+.hero-copy{display:flex;flex-direction:column;gap:20px;min-width:0}
+.hero h1{font-size:clamp(38px,6.4vw,74px)}
+.hero h1 span{color:var(--accent)}
+.lead{margin:0;font-size:18px;color:var(--muted);max-width:52ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px}
+.open{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700}
+.dot{width:9px;height:9px;border-radius:50%;background:#3BD16F;box-shadow:0 0 0 4px rgba(59,209,111,.18)}
+.hero-logo{width:100%;max-width:100%;height:auto;display:block;mix-blend-mode:lighten;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{transform:translateY(12px)}to{transform:none}}
+.swoosh{width:100%;max-width:100%;height:auto;display:block}
+.swoosh path{fill:none;stroke:var(--accent);stroke-width:5;stroke-linecap:round;stroke-dasharray:900;stroke-dashoffset:0;animation:draw 1.6s cubic-bezier(.6,.1,.2,1) both}
+.swoosh path:nth-child(2){animation-delay:.35s}
+@keyframes draw{from{stroke-dashoffset:900}to{stroke-dashoffset:0}}
+.ratings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+.rate{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px}
+.rate b{display:block;font-family:var(--display);font-weight:400;font-size:34px;color:var(--accent);line-height:1}
+.rate span{font-size:13px;color:var(--muted)}
+
+/* услуги */
+.services{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.services{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:420px){.services{grid-template-columns:minmax(0,1fr)}}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px;display:flex;flex-direction:column;gap:8px;transition:border-color .2s}
+.svc:hover{border-color:var(--accent)}
+.svc svg{width:32px;height:32px;stroke:var(--accent);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.svc h3{font-size:19px;margin-top:6px}
+.svc p{margin:0;font-size:14px;color:var(--muted)}
+.svc .price{margin-top:auto;padding-top:6px;font-weight:800;font-size:14px;color:var(--fg)}
+.extra{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:14px;color:var(--muted)}
+
+/* фото */
+.sec-sub{margin:0;color:var(--muted);max-width:60ch}
+.works{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:860px){.works{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}}
+.shop{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:860px){.shop{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:72%;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}}
+.tile{position:relative;display:block;padding:0;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--surface);cursor:zoom-in;aspect-ratio:1/1;max-width:100%;scroll-snap-align:start;color:var(--fg);font:inherit;text-align:left}
+.shop .tile{aspect-ratio:4/5}
+.tile.big{grid-column:span 2;grid-row:span 2}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.tile:hover img{transform:scale(1.04)}
+.tile:hover{border-color:var(--accent)}
+.cap{position:absolute;inset:auto 0 0 0;padding:28px 12px 10px;background:linear-gradient(180deg,rgba(6,7,11,0),rgba(6,7,11,.88) 60%);font-size:12px;color:var(--muted);display:flex;flex-direction:column;gap:2px;line-height:1.3}
+.cap b{font-size:14px;color:var(--fg);font-weight:800}
+.tile.big .cap b{font-size:18px}
+@media (max-width:420px){.works .tile:not(.big) .cap{padding:20px 8px 8px}.works .tile:not(.big) .cap span,.works .tile:not(.big) .cap{font-size:11px}.works .tile:not(.big) .cap b{font-size:12px}}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(3,4,6,.94);display:flex;align-items:center;justify-content:center;gap:12px;padding:calc(16px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(16px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:0;max-width:min(1000px,100%)}
+.lb img{max-width:100%;max-height:calc(100vh - 140px);object-fit:contain;border-radius:8px}
+.lb figcaption{color:var(--fg);font-weight:700;text-align:center}
+.lb-btn{flex:none;width:48px;height:48px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);color:var(--fg);font-size:20px;cursor:pointer}
+.lb-btn:hover{border-color:var(--accent)}
+.lb-close{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px))}
+@media (max-width:620px){.lb-prev,.lb-next{position:absolute;bottom:calc(18px + env(safe-area-inset-bottom,0px))}.lb-prev{left:calc(50% - 60px)}.lb-next{right:calc(50% - 60px)}.lb img{max-height:calc(100vh - 200px)}}
+
+/* отзывы */
+.rev-top{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px}
+.rev-ctrl{display:flex;gap:8px}
+.rev-ctrl button{width:44px;height:44px;border-radius:50%;background:var(--surface-2);border:1px solid var(--line);color:var(--fg);font-size:18px;cursor:pointer}
+.rev-ctrl button:hover{border-color:var(--accent)}
+.reviews{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(280px,340px);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:thin}
+.rev{scroll-snap-align:start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.stars{color:var(--accent);letter-spacing:3px;font-size:14px}
+.rev p{margin:0;font-size:15px;color:#DCDDE2}
+.who{margin-top:auto;display:flex;justify-content:space-between;gap:10px;font-size:13px}
+.who b{font-weight:800}
+.who span{color:var(--muted)}
+.rev-links{display:flex;flex-wrap:wrap;gap:16px;margin-top:18px;font-weight:700;font-size:14px}
+
+/* заявка */
+.form-box{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:32px;background:var(--surface);border:1px solid var(--accent);border-radius:18px;padding:32px}
+@media (max-width:860px){.form-box{grid-template-columns:minmax(0,1fr);padding:22px}}
+.form-box p{margin:0;color:var(--muted)}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:520px){form{grid-template-columns:minmax(0,1fr)}}
+.f{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:700;color:var(--muted)}
+.f.full{grid-column:1/-1}
+.f input,.f select,.f textarea{min-height:48px;padding:10px 14px;background:var(--bg);border:1px solid var(--line);border-radius:10px;color:var(--fg);font:500 15px var(--body)}
+.f textarea{min-height:96px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--accent)}
+form .btn{grid-column:1/-1}
+.err{grid-column:1/-1;color:#FF8A7A;font-size:14px;margin:0}
+.done{grid-column:1/-1;display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--surface-2);border-radius:12px}
+.done .cta-row .btn{flex:1}
+
+/* контакты */
+.contacts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:860px){.contacts{grid-template-columns:minmax(0,1fr)}}
+.c{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.c .lbl{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.c .big{font-family:var(--display);font-size:22px;line-height:1.2;color:var(--fg);text-decoration:none;user-select:all}
+.c .row{display:flex;flex-wrap:wrap;gap:8px}
+.c .row a{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border-radius:10px;background:var(--surface-2);border:1px solid var(--line);color:var(--fg);text-decoration:none;font-weight:700;font-size:14px}
+.c .row a:hover{border-color:var(--accent)}
+footer{border-top:1px solid var(--line);padding-block:24px;color:var(--muted);font-size:13px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+<link rel="icon" href="logo.png">
+</head>
+<body>
+
+
+<header>
+  <div class="wrap bar">
+    <a href="#top" aria-label="AUTODESIGN — наверх"><img src="logo.png" alt="AUTODESIGN"></a>
+    <nav class="nav" aria-label="Разделы">
+      <a href="#services">Услуги</a><a href="#works">Работы</a><a href="#shop">Цех</a><a href="#reviews">Отзывы</a><a href="#contacts">Контакты</a>
+    </nav>
+    <div class="bar-call">
+      <a class="bar-phone" href="tel:+79047358888">+7 904 735-88-88</a>
+      <a class="btn btn-accent" href="#form">Заявка</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">Автоателье · Уфа · Черниковка</div>
+        <h1>Делаем ваш автомобиль <span>лучше</span></h1>
+        <p class="lead">Кузовной ремонт любой сложности, стапель, химчистка, мойка, оптика и автосервис. Всё в одном месте, рядом с остановкой «Станция Бензин».</p>
+        <div class="cta-row">
+          <a class="btn btn-accent" href="#form">Оставить заявку</a>
+          <a class="btn btn-ghost" href="https://wa.me/79377358888" target="_blank" rel="noopener">Написать в WhatsApp</a>
+        </div>
+        <div class="open"><span class="dot" aria-hidden="true"></span>Работаем круглосуточно, 24/7</div>
+      </div>
+      <div>
+        <img class="hero-logo" src="logo.png" alt="Логотип AUTODESIGN">
+        <div class="ratings">
+          <div class="rate"><b>4.9</b><span>69 оценок в 2ГИС</span></div>
+          <div class="rate"><b>4.3</b><span>47 оценок в Яндекс Картах</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">Что делаем</div><h2>Услуги</h2></div>
+      <div class="services">
+        <article class="svc">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 21l3-7c1-2 2-3 4-3h10c2 0 3 1 4 3l3 7v4H4z"></path><circle cx="10" cy="25" r="2.5"></circle><circle cx="22" cy="25" r="2.5"></circle><path d="M8 14h16"></path></svg>
+          <h3>Кузовной ремонт</h3>
+          <p>Любая сложность: после ДТП, вмятины, пороги, бамперы. Восстанавливаем, а не только меняем.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M4 26h24M7 26V16M25 26V16M5 16h22M10 16l3-6h6l3 6"></path><path d="M16 4v6"></path></svg>
+          <h3>Стапель и покраска</h3>
+          <p>Восстановление геометрии кузова на стапеле, окраска в камере с подбором цвета.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8 26V12a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v14"></path><path d="M6 26h20M12 14h8M12 19h8"></path></svg>
+          <h3>Химчистка и детейлинг</h3>
+          <p>Химчистка салона, полировка кузова, защитные покрытия.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c4 6 7 10 7 14a7 7 0 0 1-14 0c0-4 3-8 7-14z"></path><path d="M13 19a3 3 0 0 0 3 3"></path></svg>
+          <h3>Мойка</h3>
+          <p>Мойка кузова и мойка радиаторов с разбором.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 12c4-3 9-3 13 0v8c-4 3-9 3-13 0z"></path><path d="M21 12h7M21 16h7M21 20h7"></path></svg>
+          <h3>Оптика</h3>
+          <p>Ремонт фар, любые фары и задние фонари.</p>
+        </article>
+        <article class="svc">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="4"></circle><path d="M16 3v4M16 25v4M3 16h4M25 16h4M7 7l3 3M22 22l3 3M7 25l3-3M22 10l3-3"></path></svg>
+          <h3>Автосервис</h3>
+          <p>ТО, ходовая, кондиционеры, электрика, компьютерная диагностика.</p>
+        </article>
+      </div>
+      <div class="extra">
+        <span class="chip">Эвакуатор</span><span class="chip">Запчасти в наличии дешевле магазина</span><span class="chip">Заправка кондиционера</span><span class="chip">Ремонт ходовой</span><span class="chip">Любой вид оплаты</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="works">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">До и после</div><h2>Наши работы</h2><p class="sec-sub">Реальные автомобили наших клиентов. Нажмите на фото, чтобы рассмотреть.</p></div>
+      <div class="works" data-group="works">
+        <button type="button" class="tile big" data-src="img/w07.jpg" data-cap="Hyundai Solaris — передняя часть после тяжёлого ДТП"><img src="img/w07.jpg" alt="Hyundai Solaris до и после кузовного ремонта" loading="lazy"><span class="cap"><b>Hyundai Solaris</b>Передняя часть после тяжёлого ДТП</span></button>
+        <button type="button" class="tile" data-src="img/w03.jpg" data-cap="BMW 3 — крыло, дверь, покраска в цвет"><img src="img/w03.jpg" alt="BMW 3 до и после ремонта" loading="lazy"><span class="cap"><b>BMW 3</b>Крыло и дверь</span></button>
+        <button type="button" class="tile" data-src="img/w09.jpg" data-cap="Toyota Land Cruiser — передняя часть"><img src="img/w09.jpg" alt="Toyota Land Cruiser до и после ремонта" loading="lazy"><span class="cap"><b>Toyota Land Cruiser</b>Передняя часть</span></button>
+        <button type="button" class="tile" data-src="img/w04.jpg" data-cap="Skoda Rapid — задняя часть, стапель и покраска"><img src="img/w04.jpg" alt="Skoda Rapid на стапеле и после ремонта" loading="lazy"><span class="cap"><b>Skoda Rapid</b>Задняя часть, стапель</span></button>
+        <button type="button" class="tile" data-src="img/w12.jpg" data-cap="Mazda CX-5 — капот и передняя часть"><img src="img/w12.jpg" alt="Mazda CX-5 до и после ремонта" loading="lazy"><span class="cap"><b>Mazda CX-5</b>Капот и передняя часть</span></button>
+        <button type="button" class="tile" data-src="img/w11.jpg" data-cap="Kia Rio — боковой удар, стойка и двери"><img src="img/w11.jpg" alt="Kia Rio после бокового удара и после ремонта" loading="lazy"><span class="cap"><b>Kia Rio</b>Боковой удар, стойка и двери</span></button>
+        <button type="button" class="tile" data-src="img/w06.jpg" data-cap="Kia Sportage — передняя часть"><img src="img/w06.jpg" alt="Kia Sportage до и после ремонта" loading="lazy"><span class="cap"><b>Kia Sportage</b>Передняя часть</span></button>
+        <button type="button" class="tile" data-src="img/w02.jpg" data-cap="Kia Rio — передняя часть после ДТП, восстановление на стапеле"><img src="img/w02.jpg" alt="Kia Rio после ДТП, на стапеле и после ремонта" loading="lazy"><span class="cap"><b>Kia Rio</b>Передняя часть, стапель</span></button>
+        <button type="button" class="tile" data-src="img/w10.jpg" data-cap="Chevrolet Cruze — передняя часть"><img src="img/w10.jpg" alt="Chevrolet Cruze до и после ремонта" loading="lazy"><span class="cap"><b>Chevrolet Cruze</b>Передняя часть</span></button>
+        <button type="button" class="tile" data-src="img/w08.jpg" data-cap="Lada Granta — передняя часть"><img src="img/w08.jpg" alt="Lada Granta до и после ремонта" loading="lazy"><span class="cap"><b>Lada Granta</b>Передняя часть</span></button>
+        <button type="button" class="tile" data-src="img/w05.jpg" data-cap="ГАЗель — кабина после ДТП и коррозии"><img src="img/w05.jpg" alt="ГАЗель до и после ремонта кабины" loading="lazy"><span class="cap"><b>ГАЗель</b>Кабина, коррозия</span></button>
+        <button type="button" class="tile" data-src="img/w01.jpg" data-cap="Задняя дверь и крыло — вытяжка и покраска"><img src="img/w01.jpg" alt="Вмятина на задней двери до и после ремонта" loading="lazy"><span class="cap"><b>Задняя дверь</b>Вытяжка и покраска</span></button>
+        <button type="button" class="tile" data-src="img/w13.jpg" data-cap="Полировка и восстановление фар"><img src="img/w13.jpg" alt="Фара до и после полировки" loading="lazy"><span class="cap"><b>Оптика</b>Полировка фар</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="shop">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">Цех и оборудование</div><h2>Где ремонтируем</h2><p class="sec-sub">Свой кузовной цех, стапели, покрасочная камера и автомойка на одной территории.</p></div>
+      <div class="shop" data-group="shop">
+        <button type="button" class="tile" data-src="img/e05.jpg" data-cap="Покрасочная камера"><img src="img/e05.jpg" alt="Маляр в покрасочной камере" loading="lazy"><span class="cap"><b>Покрасочная камера</b>Окраска деталей</span></button>
+        <button type="button" class="tile" data-src="img/e04.jpg" data-cap="Стапель для восстановления геометрии кузова"><img src="img/e04.jpg" alt="Стапель в цехе" loading="lazy"><span class="cap"><b>Стапель</b>Геометрия кузова</span></button>
+        <button type="button" class="tile" data-src="img/e03.jpg" data-cap="Кузовной участок"><img src="img/e03.jpg" alt="Кузовной участок с автомобилями" loading="lazy"><span class="cap"><b>Кузовной участок</b>Ремонт и подготовка</span></button>
+        <button type="button" class="tile" data-src="img/e06.jpg" data-cap="Цех подготовки и окраски OTIS"><img src="img/e06.jpg" alt="Цех с окрасочной камерой OTIS" loading="lazy"><span class="cap"><b>Цех окраски</b>Камера OTIS</span></button>
+        <button type="button" class="tile" data-src="img/e07.jpg" data-cap="Подъёмник-стапель Globaljig"><img src="img/e07.jpg" alt="Подъёмник-стапель Globaljig" loading="lazy"><span class="cap"><b>Globaljig</b>Подъёмник-стапель</span></button>
+        <button type="button" class="tile" data-src="img/e08.jpg" data-cap="Станция заправки кондиционеров DEKAR X530"><img src="img/e08.jpg" alt="Станция заправки кондиционеров DEKAR X530" loading="lazy"><span class="cap"><b>DEKAR X530</b>Заправка кондиционеров</span></button>
+        <button type="button" class="tile" data-src="img/e09.jpg" data-cap="Заправка кондиционера"><img src="img/e09.jpg" alt="Заправка кондиционера автомобиля" loading="lazy"><span class="cap"><b>Кондиционеры</b>Диагностика и заправка</span></button>
+        <button type="button" class="tile" data-src="img/e02.jpg" data-cap="Автомойка на четыре поста"><img src="img/e02.jpg" alt="Здание автомойки" loading="lazy"><span class="cap"><b>Автомойка</b>Четыре поста</span></button>
+        <button type="button" class="tile" data-src="img/e01.jpg" data-cap="Кузовной цех, ул. Ульяновых, 67/2"><img src="img/e01.jpg" alt="Здание кузовного цеха" loading="lazy"><span class="cap"><b>Кузовной цех</b>Ульяновых, 67/2</span></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Просмотр фото">
+    <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Закрыть">✕</button>
+    <button type="button" class="lb-btn lb-prev" id="lbPrev" aria-label="Предыдущее фото">←</button>
+    <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+    <button type="button" class="lb-btn lb-next" id="lbNext" aria-label="Следующее фото">→</button>
+  </div>
+
+  <section id="reviews">
+    <div class="wrap">
+      <div class="rev-top">
+        <div class="sec-head" style="margin-bottom:0"><div class="eyebrow">Что говорят клиенты</div><h2>Отзывы</h2></div>
+        <div class="rev-ctrl"><button type="button" id="revPrev" aria-label="Предыдущие отзывы">←</button><button type="button" id="revNext" aria-label="Следующие отзывы">→</button></div>
+      </div>
+      <div style="height:24px"></div>
+      <div class="reviews" id="revList" tabindex="0" aria-label="Отзывы клиентов"></div>
+      <div class="rev-links">
+        <a href="https://2gis.ru/ufa/firm/70000001033579529/tab/reviews" target="_blank" rel="noopener">Все отзывы в 2ГИС →</a>
+        <a href="https://yandex.ru/maps/org/182848115227/reviews/" target="_blank" rel="noopener">Все отзывы в Яндекс Картах →</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="form">
+    <div class="wrap">
+      <div class="form-box">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="eyebrow">Заявка</div>
+          <h2>Рассчитаем ремонт</h2>
+          <p>Оставьте телефон и коротко опишите задачу. Перезвоним, а стоимость кузовного ремонта можем прикинуть по фото в мессенджере.</p>
+        </div>
+        <form id="lead" novalidate>
+          <label class="f" for="fName">Имя<input id="fName" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться"></label>
+          <label class="f" for="fPhone">Телефон<input id="fPhone" name="phone" type="tel" autocomplete="tel" placeholder="+7 ___ ___-__-__" required></label>
+          <label class="f full" for="fService">Услуга
+            <select id="fService" name="service">
+              <option>Кузовной ремонт</option><option>Стапель и покраска</option><option>Химчистка и детейлинг</option><option>Мойка</option><option>Оптика</option><option>Автосервис / ТО</option><option>Эвакуатор</option><option>Другое</option>
+            </select>
+          </label>
+          <label class="f full" for="fCar">Автомобиль и задача<textarea id="fCar" name="msg" placeholder="Например: Kia Rio, вмятина на задней двери"></textarea></label>
+          <p class="err" id="fErr" hidden>Укажите телефон, чтобы мы могли перезвонить.</p>
+          <button class="btn btn-accent" type="submit">Отправить заявку</button>
+          <div class="done" id="fDone" hidden>
+            <b>Заявка собрана. Отправьте её в удобный мессенджер:</b>
+            <div class="cta-row"><a class="btn btn-accent" id="sendWa" href="https://wa.me/79377358888" target="_blank" rel="noopener">WhatsApp</a><a class="btn btn-ghost" href="https://t.me/autodesign_ufa" target="_blank" rel="noopener">Telegram</a></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacts">
+    <div class="wrap">
+      <div class="sec-head"><div class="eyebrow">Ждём вас</div><h2>Контакты</h2></div>
+      <div class="contacts">
+        <div class="c">
+          <div class="lbl">Телефоны</div>
+          <a class="big" href="tel:+79047358888">+7 904 735-88-88</a>
+          <a class="big" href="tel:+79377358888">+7 937 735-88-88</a>
+        </div>
+        <div class="c">
+          <div class="lbl">Мессенджеры</div>
+          <div class="row">
+            <a href="https://wa.me/79377358888" target="_blank" rel="noopener">WhatsApp</a>
+            <a href="https://t.me/autodesign_ufa" target="_blank" rel="noopener">Telegram</a>
+            <a href="https://t.me/autodesignUFA" target="_blank" rel="noopener">Telegram-канал</a>
+            <a href="https://vk.ru/autodesign_ufa_detali" target="_blank" rel="noopener">ВКонтакте</a>
+          </div>
+        </div>
+        <div class="c">
+          <div class="lbl">Адрес · 24/7</div>
+          <div class="big" style="user-select:text">Уфа, ул. Ульяновых, 67/2</div>
+          <div class="row">
+            <a href="https://yandex.ru/maps/org/182848115227" target="_blank" rel="noopener">Яндекс Карты</a>
+            <a href="https://2gis.ru/ufa/firm/70000001033579529" target="_blank" rel="noopener">2ГИС</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© AUTODESIGN Уфа · ОГРНИП 321028000021626</span><span>Кузовной ремонт · Автосервис · Детейлинг</span></div>
+</footer>
+
+<script>
+(function(){
+  var reviews=[
+    ["Ильшат А.","Яндекс","Оставлял Мерседес на ремонт бампера, починили быстро и качественно, в цвет попали на 100%. Другие сервисы предлагали только замену."],
+    ["Rustem N.","2ГИС","Ребята всё делают качественно и в срок, Искандер всегда на связи."],
+    ["Андрей Х.","2ГИС","Рекомендую сервис! Восстановили после серьёзного ДТП."],
+    ["Анна К.","Яндекс","Обращалась по кузовному ремонту. Всё сделано быстро, качественно, по приемлемой цене. Обязательно обращусь ещё."],
+    ["Нигора Г.","2ГИС","Машина как новая с салона."],
+    ["Ленар","Яндекс","Отличная автомойка и детейлинг! Знаю их давно, всегда идут на контакт. Лишнего не предлагают, только по делу."],
+    ["Фаниль И.","2ГИС","Всё шикарно сделали, подробно показали, где что сломано."],
+    ["Антонина Б.","Яндекс","Приезжали на полировку кузова и заправили кондиционер. Всё быстро и чётко, ещё и скидку дали."],
+    ["Кристина К.","2ГИС","Удобно, что можно обслужить свой автомобиль со всех сторон в одном месте!"],
+    ["Тимур","Яндекс","Сделано добротно, качественно и в срок."],
+    ["Рината К.","2ГИС","Искандер всегда на связи, при любом вопросе даёт консультацию дистанционно."],
+    ["Сергей Щ.","Яндекс","Ремонт кондиционера: результат превзошёл ожидания и стоило недорого."],
+    ["Нюта","2ГИС","Работники вежливые, покрасили бампер качественно и быстро."],
+    ["Николай Н.","Яндекс","Починили кондиционер, через 1,5 часа уже ехал."],
+    ["Евгений Г.","2ГИС","Отличный сервис, дали вторую жизнь машинке."],
+    ["Рифат С.","2ГИС","Ремонтируют на отлично. Теперь всегда езжу к ним."]
+  ];
+  var list=document.getElementById('revList');
+  reviews.forEach(function(r){
+    var el=document.createElement('article');el.className='rev';
+    el.innerHTML='<div class="stars" aria-label="5 из 5">★★★★★</div><p></p><div class="who"><b></b><span></span></div>';
+    el.querySelector('p').textContent='«'+r[2]+'»';
+    el.querySelector('b').textContent=r[0];
+    el.querySelector('span').textContent=r[1]==='2ГИС'?'2ГИС':'Яндекс Карты';
+    list.appendChild(el);
+  });
+  function step(d){var c=list.querySelector('.rev');var w=c?c.getBoundingClientRect().width+12:320;list.scrollBy({left:d*w,behavior:'smooth'});}
+  document.getElementById('revPrev').addEventListener('click',function(){step(-1)});
+  document.getElementById('revNext').addEventListener('click',function(){step(1)});
+
+  var lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),lbCap=document.getElementById('lbCap'),cur=[],idx=0,opener=null;
+  function show(i){idx=(i+cur.length)%cur.length;var t=cur[idx];lbImg.src=t.dataset.src;lbImg.alt=t.querySelector('img').alt;lbCap.textContent=t.dataset.cap;}
+  document.querySelectorAll('[data-group] .tile').forEach(function(t){
+    t.addEventListener('click',function(){cur=[].slice.call(t.parentNode.querySelectorAll('.tile'));opener=t;show(cur.indexOf(t));lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbClose').focus();});
+  });
+  function close(){lb.hidden=true;document.body.style.overflow='';if(opener)opener.focus();}
+  document.getElementById('lbClose').addEventListener('click',close);
+  document.getElementById('lbPrev').addEventListener('click',function(){show(idx-1)});
+  document.getElementById('lbNext').addEventListener('click',function(){show(idx+1)});
+  lb.addEventListener('click',function(e){if(e.target===lb)close();});
+  document.addEventListener('keydown',function(e){if(lb.hidden)return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(idx-1);if(e.key==='ArrowRight')show(idx+1);});
+  var sx=0;lb.addEventListener('touchstart',function(e){sx=e.touches[0].clientX},{passive:true});
+  lb.addEventListener('touchend',function(e){var d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>50)show(idx+(d<0?1:-1));});
+
+  var form=document.getElementById('lead'),err=document.getElementById('fErr'),done=document.getElementById('fDone'),wa=document.getElementById('sendWa');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var phone=form.phone.value.replace(/[^\d+]/g,'');
+    if(phone.replace(/\D/g,'').length<10){err.hidden=false;form.phone.focus();return;}
+    err.hidden=true;
+    var text='Здравствуйте! Заявка с сайта.\nИмя: '+(form.name.value||'—')+'\nТелефон: '+form.phone.value+'\nУслуга: '+form.service.value+(form.msg.value?'\nЗадача: '+form.msg.value:'');
+    wa.href='https://wa.me/79377358888?text='+encodeURIComponent(text);
+    done.hidden=false;
+  });
+})();
+</script>
+
+</body>
+</html>
